@@ -122,35 +122,35 @@ export const certifications = [
   { name: "Mechatronics Servicing NC II", issuer: "TESDA", year: "[Year]" },
 ];
 
-export type Drawing = "power" | "plan" | "circuit" | "embedded";
+export type CircuitKind = "solenoid-maintained" | "led-startstop" | "led-toggle" | "solenoid-momentary";
 
 export const services: {
   title: string;
-  drawing: Drawing;
+  circuit: CircuitKind;
   summary: string;
   deliverables: string[];
 }[] = [
   {
     title: "Power system design",
-    drawing: "power",
+    circuit: "solenoid-maintained",
     summary: "[What this service covers and the kind of client it is for.]",
     deliverables: ["[One-line diagrams]", "[Load flow / short-circuit studies]", "[Protection coordination]"],
   },
   {
     title: "Electrical design & AutoCAD drafting",
-    drawing: "plan",
+    circuit: "led-startstop",
     summary: "[What this service covers and the kind of client it is for.]",
     deliverables: ["[Power and lighting plans]", "[Panel schedules]", "[Construction drawing sets]"],
   },
   {
     title: "Electronics & circuit design",
-    drawing: "circuit",
+    circuit: "led-toggle",
     summary: "[What this service covers and the kind of client it is for.]",
     deliverables: ["[Schematic capture]", "[PCB layout]", "[Prototype testing]"],
   },
   {
     title: "Embedded systems",
-    drawing: "embedded",
+    circuit: "solenoid-momentary",
     summary: "[What this service covers and the kind of client it is for.]",
     deliverables: ["[Firmware in C/C++]", "[Sensor and peripheral integration]", "[Bring-up and debugging]"],
   },
@@ -231,7 +231,7 @@ export const sheets = [
   { id: "certifications", number: "E-210", title: "Certifications", short: "CERTS" },
   { id: "projects", number: "E-300", title: "Projects", short: "PROJECTS" },
   { id: "publications", number: "E-310", title: "Publications", short: "PAPERS" },
-  { id: "services", number: "E-400", title: "Details", short: "SERVICES" },
+  { id: "services", number: "E-400", title: "Services", short: "SERVICES" },
   { id: "contact", number: "E-500", title: "Request for information", short: "CONTACT" },
 ] as const;
 

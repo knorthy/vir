@@ -1207,10 +1207,10 @@ html.loaded .loader {
 
 @media (min-width: 900px) {
   .about-grid {
-    grid-template-columns: minmax(0, 60ch) 260px;
+    grid-template-columns: minmax(0, 60ch) 340px;
     justify-content: start;
     align-items: start;
-    gap: 4rem;
+    gap: calc(4rem + 10px);
   }
 
   .portrait {
@@ -1259,7 +1259,7 @@ html.loaded .loader {
   position: relative;
   aspect-ratio: 1;
   border: 1.5px solid var(--ink-2);
-  max-width: 300px;
+  max-width: 340px;
 }
 
 .portrait svg {
@@ -3115,15 +3115,11 @@ body:has(#assistant:popover-open) .dog-speech {
   visibility: hidden;
 }
 
-/* Glass chat panel. */
+/* Chat panel: one solid colour, no texture, glass, or gradient. */
 .chat-panel {
-  background: color-mix(in srgb, var(--paper) 78%, transparent);
-  backdrop-filter: blur(28px) saturate(1.5);
-  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  background: var(--paper-deep);
   border-color: color-mix(in srgb, var(--ink) 28%, transparent);
-  box-shadow:
-    inset 0 1px 0 color-mix(in srgb, var(--ink) 22%, transparent),
-    0 24px 50px -20px rgb(3 14 32 / 0.6);
+  box-shadow: 0 24px 50px -20px rgb(3 14 32 / 0.6);
 }
 
 .msg-model {
@@ -3131,7 +3127,7 @@ body:has(#assistant:popover-open) .dog-speech {
 }
 
 .chat-input {
-  background: color-mix(in srgb, var(--paper) 45%, transparent);
+  background: var(--paper);
 }
 
 /* Skills stack: plates are hoverable; leader lines draw on hover. */
@@ -3221,4 +3217,366 @@ body:has(#assistant:popover-open) .dog-speech {
 /* Projects: the sheets rest in the middle of the sheet. */
 .desk-surface {
   margin-inline: auto;
+}
+
+/* ── RFI: the form's top lines up with the sheet title ─────────────────────── */
+@media (min-width: 1000px) {
+  .contact-sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 460px);
+    column-gap: 4rem;
+    max-width: calc(1100px + var(--pad-l));
+  }
+
+  .contact-sheet > .sheet-header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .contact-sheet .contact-grid {
+    display: contents;
+  }
+
+  .contact-sheet .contact-copy {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .contact-sheet .rfi {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: start;
+  }
+}
+
+/* ── Details: interactive circuits ────────────────────────────────────────── */
+.cx {
+  position: relative;
+  outline: none;
+  color: var(--ink);
+}
+
+.cx[tabindex] {
+  cursor: pointer;
+}
+
+.cx:focus-visible {
+  outline: 2px solid var(--hi-line);
+  outline-offset: 6px;
+}
+
+.cx-svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.cx-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-2);
+}
+
+/* Current: a dashed overlay on every conductor that flows once the circuit is live. */
+.cx-flow {
+  stroke: var(--hi-line);
+  stroke-width: 2.5;
+  stroke-dasharray: 7 9;
+  opacity: 0;
+  transition: opacity 0.25s var(--ease-out);
+}
+
+.cx[data-live] .cx-flow {
+  opacity: 1;
+  animation: cx-current 0.8s linear infinite;
+}
+
+@keyframes cx-current {
+  to {
+    stroke-dashoffset: -16;
+  }
+}
+
+/* Maintained switch blade swings shut. */
+.cx-blade {
+  transform-box: view-box;
+  transform-origin: 150px 60px;
+  rotate: -32deg;
+  transition: rotate 0.3s var(--ease-out), stroke 0.2s;
+}
+
+.cx-blade[data-closed] {
+  rotate: 0deg;
+  stroke: var(--hi-line);
+}
+
+/* Pushbuttons travel 12 units: NO closes onto the rail, NC lifts off it. */
+.cx-push {
+  transition: translate 0.15s var(--ease-out), stroke 0.15s;
+}
+
+.cx-push[data-pressed] {
+  translate: 0 12px;
+  stroke: var(--hi-line);
+}
+
+.cx-push-nc {
+  stroke: var(--hi-line);
+}
+
+.cx:not([data-live]) .cx-push-nc:not([data-pressed]) {
+  stroke: currentColor;
+}
+
+/* Solenoid plunger: held in and pumping, or one stroke. */
+.cx-plunger rect {
+  fill: var(--paper-deep);
+}
+
+.cx-plunger[data-mode="hold"] {
+  animation: cx-pump 0.45s ease-in-out infinite alternate;
+}
+
+.cx-plunger[data-mode="pulse"] {
+  animation: cx-stroke 0.75s cubic-bezier(0.3, 0, 0.2, 1);
+}
+
+.cx-plunger[data-mode] rect {
+  stroke: var(--hi-line);
+}
+
+@keyframes cx-pump {
+  from {
+    translate: 0 -10px;
+  }
+  to {
+    translate: 0 -26px;
+  }
+}
+
+@keyframes cx-stroke {
+  30% {
+    translate: 0 -26px;
+  }
+  60% {
+    translate: 0 -26px;
+  }
+  100% {
+    translate: 0 0;
+  }
+}
+
+/* LED lights up with a soft halo and emission rays. */
+.cx-glow {
+  fill: var(--hi);
+  stroke: none;
+  opacity: 0;
+  filter: blur(10px);
+  transition: opacity 0.25s var(--ease-out);
+}
+
+.cx-led-body {
+  transition: fill 0.2s var(--ease-out);
+}
+
+.cx-rays {
+  opacity: 0.35;
+  transition: opacity 0.2s;
+}
+
+.cx-led[data-on] .cx-glow {
+  opacity: 0.75;
+}
+
+.cx-led[data-on] .cx-led-body {
+  fill: var(--hi);
+  stroke: var(--hi-line);
+}
+
+.cx-led[data-on] .cx-rays {
+  opacity: 1;
+  stroke: var(--hi-line);
+}
+
+/* CR-1 latch contacts close together. */
+.cx-latch path {
+  transition: translate 0.2s var(--ease-out), stroke 0.2s;
+}
+
+.cx-latch[data-closed] .cx-latch-a {
+  translate: 3px 0;
+  stroke: var(--hi-line);
+}
+
+.cx-latch[data-closed] .cx-latch-b {
+  translate: -3px 0;
+  stroke: var(--hi-line);
+}
+
+/* Panel pushbuttons, like an operator station. */
+.cx-controls {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 0.75rem;
+  padding-left: 1rem;
+}
+
+.pb {
+  display: grid;
+  justify-items: center;
+  gap: 0.35rem;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  cursor: pointer;
+}
+
+.pb span {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 3px solid var(--ink-3);
+  box-shadow:
+    inset 0 -4px 0 rgb(0 0 0 / 0.25),
+    0 3px 0 rgb(3 14 32 / 0.35);
+  transition:
+    translate 0.08s,
+    box-shadow 0.08s,
+    filter 0.2s;
+}
+
+.pb:active span {
+  translate: 0 3px;
+  box-shadow:
+    inset 0 -1px 0 rgb(0 0 0 / 0.25),
+    0 0 0 rgb(3 14 32 / 0.35);
+}
+
+.pb:hover span {
+  filter: brightness(1.12);
+}
+
+.pb:focus-visible {
+  outline: none;
+}
+
+.pb:focus-visible span {
+  outline: 2px solid var(--hi-line);
+  outline-offset: 3px;
+}
+
+.pb-start span {
+  background: #2f9e5b;
+}
+
+.pb-stop span {
+  background: #d8432a;
+}
+
+.pb-toggle span {
+  background: #8c7a2a;
+}
+
+.pb-toggle[aria-pressed="true"] span {
+  background: var(--hi);
+  box-shadow:
+    inset 0 -1px 0 rgb(0 0 0 / 0.25),
+    0 0 18px rgb(244 222 76 / 0.6);
+  translate: 0 2px;
+}
+
+.pb-toggle[aria-pressed="true"] {
+  color: var(--ink);
+}
+
+.cx-hint {
+  margin-top: 0.5rem;
+  font-family: var(--font-hand);
+  font-size: 1rem;
+  color: var(--red);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cx[data-live] .cx-flow,
+  .cx-plunger[data-mode] {
+    animation: none;
+  }
+
+  .cx-plunger[data-mode] {
+    translate: 0 -26px;
+  }
+}
+
+/* Clickable pushbutton symbols inside the circuits. */
+.cx-btn {
+  cursor: pointer;
+  outline: none;
+}
+
+.cx-hit {
+  fill: transparent;
+  stroke: none;
+}
+
+.cx-btn:hover .cx-push,
+.cx-btn:hover .cx-label {
+  stroke: var(--hi-line);
+  fill: var(--hi-line);
+}
+
+.cx-btn:hover .cx-push path {
+  fill: none;
+}
+
+.cx-btn:focus-visible .cx-hit {
+  stroke: var(--hi-line);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 3;
+}
+
+.cx-btn:active .cx-push {
+  translate: 0 6px;
+}
+
+/* General notes: the portrait runs from the sheet title to the last note. */
+@media (min-width: 900px) {
+  .about-sheet {
+    display: grid;
+    grid-template-columns: minmax(0, 60ch) 340px;
+    column-gap: 6rem;
+    justify-content: start;
+  }
+
+  .about-sheet > .sheet-header {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .about-sheet .about-grid {
+    display: contents;
+  }
+
+  .about-sheet .notes {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .about-sheet .portrait {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+    aspect-ratio: auto;
+    max-width: none;
+    margin-top: 0;
+  }
+
+  .about-sheet .legend {
+    grid-column: 1 / -1;
+    grid-row: 3;
+  }
 }

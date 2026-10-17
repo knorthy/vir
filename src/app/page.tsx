@@ -16,7 +16,6 @@ import {
   Breaker,
   CloseIcon,
   Delta,
-  DetailDrawing,
   Ground,
   IndexIcon,
   Logo,
@@ -25,6 +24,7 @@ import {
 import { Assistant } from "@/components/Assistant";
 import { CertBoard } from "@/components/CertBoard";
 import { ChatPanel } from "@/components/ChatPanel";
+import { Circuit } from "@/components/Circuit";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { ProjectDesk } from "@/components/ProjectDesk";
 import { RfiForm } from "@/components/RfiForm";
@@ -237,7 +237,7 @@ export default function Home() {
           </p>
 
           {/* E-100 ABOUT */}
-          <section id="about" data-sheet className="sheet">
+          <section id="about" data-sheet className="sheet about-sheet">
             <SheetHeader id="about" />
             <div className="about-grid">
               <ol className="notes">
@@ -253,7 +253,7 @@ export default function Home() {
                 </svg>
                 <figcaption>
                   <span className="tbd">Portrait</span>
-                  <span>Opening for photo · 1:1</span>
+                  <span>Opening for photo</span>
                 </figcaption>
               </figure>
             </div>
@@ -360,8 +360,8 @@ export default function Home() {
             <SheetHeader id="services" />
             <div className="details">
               {services.map((s, i) => (
-                <article key={s.title} className="detail" data-plot>
-                  <DetailDrawing drawing={s.drawing} />
+                <article key={s.title} className="detail">
+                  <Circuit kind={s.circuit} />
                   <header className="detail-head">
                     <span className="bubble bubble-sm" aria-hidden="true">
                       <span>{i + 1}</span>
@@ -388,7 +388,7 @@ export default function Home() {
           </section>
 
           {/* E-500 CONTACT */}
-          <section id="contact" data-sheet className="sheet">
+          <section id="contact" data-sheet className="sheet contact-sheet">
             <SheetHeader id="contact" />
             <div className="contact-grid">
               <div className="contact-copy">

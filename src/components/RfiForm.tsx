@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Arrow } from "./drawings";
 
 type Field = "name" | "email" | "message";
 type Errors = Partial<Record<Field, string>>;
-type Status = "idle" | "sending" | "sent" | "failed";
+type Status = "idle" | "sending" | "sent" | "failed" | "expired";
 
 const subjects = ["A full-time role", "An internship or OJT", "A project or contract", "Something else"];
 
@@ -14,6 +14,21 @@ const subjects = ["A full-time role", "An internship or OJT", "A project or cont
 export function RfiForm({ to }: { to: string }) {
   const [errors, setErrors] = useState<Errors>({});
   const [status, setStatus] = useState<Status>("idle");
+  const token = useRef("");
+
+  // A signed, timestamped token proves the form was loaded by a person on this
+  // page; the server rejects submissions without one.
+  const refreshToken = () =>
+    fetch("/api/rfi", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((j) => {
+        token.current = j.token ?? "";
+      })
+      .catch(() => {});
+
+  useEffect(() => {
+    refreshToken();
+  }, []);
 
   async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -38,6 +53,7 @@ export function RfiForm({ to }: { to: string }) {
       subject: get("subject"),
       message: get("message"),
       website: get("website"),
+      token: token.current,
     };
 
     setStatus("sending");
@@ -50,9 +66,15 @@ export function RfiForm({ to }: { to: string }) {
       if (res.ok) {
         setStatus("sent");
         form.reset();
+        refreshToken();
         return;
       }
       const { error } = await res.json().catch(() => ({ error: "" }));
+      if (error === "expired" || error === "forbidden") {
+        await refreshToken();
+        setStatus("expired");
+        return;
+      }
       if (error === "not-configured") {
         // No mail service yet: hand the RFI to the visitor's email app instead.
         const subject = `RFI: ${payload.subject}${payload.org ? ` (${payload.org})` : ""}`;
@@ -79,6 +101,7 @@ export function RfiForm({ to }: { to: string }) {
     sending: "Sending…",
     sent: "RFI issued. Jasmine will reply by email.",
     failed: "That didn't send. Please try again in a moment.",
+    expired: "This form was open a while. Press Issue RFI once more to send.",
   }[status];
 
   return (
