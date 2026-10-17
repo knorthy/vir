@@ -34,6 +34,7 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: "#0f3a72",
+  viewportFit: "cover",
 };
 
 // Runs before first paint so the saved theme and motion-only start states never flash.

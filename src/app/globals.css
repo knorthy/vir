@@ -2467,7 +2467,7 @@ html.motion .dog-spark:nth-of-type(2n) {
     0 1px 1px rgb(3 14 32 / 0.18),
     0 12px 22px -10px rgb(3 14 32 / 0.55);
   cursor: grab;
-  touch-action: none;
+  touch-action: pan-y; /* touch scrolls the page; the grip strip drags */
   user-select: none;
   transition:
     box-shadow 0.25s var(--ease-out),
@@ -3523,14 +3523,12 @@ body:has(#assistant:popover-open) .dog-speech {
   stroke: none;
 }
 
-.cx-btn:hover .cx-push,
-.cx-btn:hover .cx-label {
+.cx-btn:hover .cx-push {
   stroke: var(--hi-line);
-  fill: var(--hi-line);
 }
 
-.cx-btn:hover .cx-push path {
-  fill: none;
+.cx-btn:hover .cx-label {
+  fill: var(--hi-line);
 }
 
 .cx-btn:focus-visible .cx-hit {
@@ -3578,5 +3576,169 @@ body:has(#assistant:popover-open) .dog-speech {
   .about-sheet .legend {
     grid-column: 1 / -1;
     grid-row: 3;
+  }
+}
+
+/* ══ Mobile adaptation (phones only; desktop is untouched) ══════════════════ */
+
+html {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.sticky-grip {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 34px;
+  cursor: grab;
+  touch-action: none;
+}
+
+.hint-touch {
+  display: none;
+}
+
+@media (hover: none) {
+  .hint-pointer {
+    display: none;
+  }
+
+  .hint-touch {
+    display: inline;
+  }
+
+  /* Grip strip reads as a handle on touch screens. */
+  .sticky-grip {
+    background: repeating-linear-gradient(
+        to bottom,
+        transparent 0 13px,
+        rgb(16 38 74 / 0.22) 13px 14px,
+        transparent 14px 17px,
+        rgb(16 38 74 / 0.22) 17px 18px,
+        transparent 18px
+      )
+      center / 40px 100% no-repeat;
+  }
+
+}
+
+@media (max-width: 759px) {
+  :root {
+    --dock-b: calc(var(--band) + 10px + env(safe-area-inset-bottom));
+  }
+
+  /* Thumb dock: logo, print switch, and index sit at the bottom-left; the
+     assistant keeps the bottom-right. The top of the screen stays clear. */
+  .logo-link {
+    top: auto;
+    bottom: var(--dock-b);
+    left: calc(var(--band) + 10px);
+  }
+
+  .controls {
+    top: auto;
+    bottom: var(--dock-b);
+    left: calc(var(--band) + 10px + 48px + 6px);
+    right: auto;
+  }
+
+  .assistant {
+    bottom: calc(var(--dock-b) - 4px);
+    right: calc(var(--band) + 6px);
+  }
+
+  .dog {
+    width: 64px;
+  }
+
+  /* Speech only while the dog is talking, floating above it. */
+  .dog-speech {
+    position: absolute;
+    right: 4px;
+    bottom: calc(100% + 6px);
+    width: max-content;
+    max-width: min(240px, 70vw);
+  }
+
+  .dog-speech:not([data-talking]) {
+    display: none;
+  }
+
+  .drawing-set {
+    padding-bottom: calc(var(--band) + 84px + env(safe-area-inset-bottom));
+  }
+
+  .cover {
+    padding-top: 2.5rem;
+    min-height: auto;
+  }
+
+  .sheet {
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  .sheet-header {
+    margin-bottom: 2rem;
+  }
+
+  /* Sheet index and chat rise from the bottom, inside thumb reach. */
+  .drawer {
+    inset: auto var(--band) calc(var(--dock-b) + 58px) var(--band);
+    width: auto;
+    max-height: min(72svh, 560px);
+    overflow-y: auto;
+    translate: 0 24px;
+  }
+
+  @starting-style {
+    .drawer:popover-open {
+      opacity: 0;
+      translate: 0 24px;
+    }
+  }
+
+  .chat-panel {
+    inset: auto var(--band) calc(var(--dock-b) + 58px) var(--band);
+    width: auto;
+    height: min(76svh, 620px);
+  }
+
+  .chat-input {
+    font-size: 16px; /* no iOS zoom on focus */
+  }
+
+  .chip {
+    min-height: 40px;
+  }
+
+  /* Comfortable form targets. */
+  .field input,
+  .field select {
+    min-height: 44px;
+  }
+
+  .field textarea {
+    font-size: 16px;
+  }
+
+  .rfi-foot .btn {
+    width: 100%;
+  }
+
+  /* Circuits: labels stay legible when the drawing scales down. */
+  .cx-label {
+    font-size: 16px;
+  }
+
+  .cx-hint {
+    font-size: 1.05rem;
+  }
+
+  .cert-board {
+    height: 860px;
+  }
+
+  .stack-label {
+    max-width: none;
   }
 }

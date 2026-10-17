@@ -62,6 +62,8 @@ export function CertBoard({ certs }: { certs: Cert[] }) {
 
       const down = (e: PointerEvent) => {
         if (e.button !== 0) return;
+        // On touch, only the grip strip drags; the rest of the note scrolls the page.
+        if (e.pointerType !== "mouse" && !(e.target as HTMLElement).closest(".sticky-grip")) return;
         n.setPointerCapture(e.pointerId);
         start = { px: e.clientX, py: e.clientY, ...offsets[i] };
         n.style.zIndex = String(++z);
@@ -149,6 +151,7 @@ export function CertBoard({ certs }: { certs: Cert[] }) {
             tabIndex={0}
             aria-label={`${c.name}, ${c.issuer}. Drag, or use arrow keys, to move this note.`}
           >
+            <span className="sticky-grip" aria-hidden="true" />
             <span className="sticky-pin" aria-hidden="true" />
             <p className="sticky-level">NC II</p>
             <h3 className="sticky-title">{title}</h3>
@@ -162,7 +165,8 @@ export function CertBoard({ certs }: { certs: Cert[] }) {
         );
       })}
       <p className="board-hint" aria-hidden="true">
-        drag the notes around
+        <span className="hint-pointer">drag the notes around</span>
+        <span className="hint-touch">drag a note by its top strip</span>
       </p>
     </div>
   );
