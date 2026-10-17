@@ -1,0 +1,184 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-17T12:00:00.000Z",
+  "title": "Design System: Jasmine Vir · Electrical Engineer",
+  "extensions": {
+    "themes": [
+      { "name": "blue", "displayName": "Blueprint", "selector": ":root", "default": true, "colorScheme": "dark" },
+      { "name": "light", "displayName": "Whiteprint", "selector": ":root[data-theme=\"light\"]", "default": false, "colorScheme": "light", "overrides": ["paper", "paper-deep", "ink", "ink-2", "ink-3", "ink-4", "ink-rule", "ink-bus", "hi-line", "red", "red-hover", "on-red", "well", "select-arrow", "texture"] }
+    ],
+    "colorMeta": {
+      "paper": { "role": "neutral", "displayName": "Paper (blueprint)", "canonical": "#0f3a72", "tonalRamp": ["#041327", "#08264d", "#0f3a72", "#1f5290", "#3a6ca9", "#6690c4", "#a0bbdf", "#dbe6f5"] },
+      "paper-deep": { "role": "neutral", "displayName": "Deep Paper (blueprint)", "canonical": "#08264d", "tonalRamp": ["#020c19", "#051a35", "#08264d", "#163e6e", "#2f5a8f", "#5a7fb0", "#97b0d4", "#d6e1f0"] },
+      "ink": { "role": "neutral", "displayName": "Line (blueprint)", "canonical": "#e8f1ff", "tonalRamp": ["#1d2735", "#3a4658", "#5b687c", "#7f8ca1", "#a3b0c4", "#c4d0e3", "#d9e4f6", "#e8f1ff"] },
+      "ink-2": { "role": "neutral", "displayName": "Tinted Line (blueprint)", "canonical": "#b4cff2", "tonalRamp": ["#142338", "#24405f", "#3a5d86", "#557ba8", "#7698c6", "#97b5de", "#b4cff2", "#dce8f9"] },
+      "ink-rule": { "role": "neutral", "displayName": "Heavy Rule (blueprint)", "canonical": "rgb(232 241 255 / 0.45)", "tonalRamp": ["rgb(232 241 255 / 0.06)", "rgb(232 241 255 / 0.1)", "rgb(232 241 255 / 0.14)", "rgb(232 241 255 / 0.2)", "rgb(232 241 255 / 0.3)", "rgb(232 241 255 / 0.45)", "rgb(232 241 255 / 0.6)", "rgb(232 241 255 / 0.8)"] },
+      "ink-bus": { "role": "neutral", "displayName": "Bus (blueprint)", "canonical": "rgb(232 241 255 / 0.5)", "tonalRamp": ["rgb(232 241 255 / 0.06)", "rgb(232 241 255 / 0.1)", "rgb(232 241 255 / 0.14)", "rgb(232 241 255 / 0.2)", "rgb(232 241 255 / 0.3)", "rgb(232 241 255 / 0.5)", "rgb(232 241 255 / 0.6)", "rgb(232 241 255 / 0.8)"] },
+      "ink-3": { "role": "neutral", "displayName": "Fine Rule (blueprint)", "canonical": "rgb(232 241 255 / 0.3)", "tonalRamp": ["rgb(232 241 255 / 0.06)", "rgb(232 241 255 / 0.1)", "rgb(232 241 255 / 0.14)", "rgb(232 241 255 / 0.2)", "rgb(232 241 255 / 0.3)", "rgb(232 241 255 / 0.45)", "rgb(232 241 255 / 0.6)", "rgb(232 241 255 / 0.8)"] },
+      "ink-4": { "role": "neutral", "displayName": "Hairline (blueprint)", "canonical": "rgb(232 241 255 / 0.14)", "tonalRamp": ["rgb(232 241 255 / 0.06)", "rgb(232 241 255 / 0.1)", "rgb(232 241 255 / 0.14)", "rgb(232 241 255 / 0.2)", "rgb(232 241 255 / 0.3)", "rgb(232 241 255 / 0.45)", "rgb(232 241 255 / 0.6)", "rgb(232 241 255 / 0.8)"] },
+      "hi": { "role": "secondary", "displayName": "Checker's Highlighter (both prints)", "canonical": "#f4de4c", "tonalRamp": ["#2e2805", "#55490c", "#83711a", "#b39c2a", "#dcc23a", "#f4de4c", "#f8ea8c", "#fcf6cf"] },
+      "hi-line": { "role": "secondary", "displayName": "Highlighter Line (blueprint)", "canonical": "#f4de4c", "tonalRamp": ["#2e2805", "#55490c", "#83711a", "#b39c2a", "#dcc23a", "#f4de4c", "#f8ea8c", "#fcf6cf"] },
+      "on-hi": { "role": "neutral", "displayName": "On Highlighter (both prints)", "canonical": "#0a2550", "tonalRamp": ["#030b19", "#061733", "#0a2550", "#1a3d72", "#355a92", "#6080b4", "#9ab0d6", "#d6e0f1"] },
+      "red": { "role": "primary", "displayName": "Redline (blueprint)", "canonical": "#ff8466", "tonalRamp": ["#3a1208", "#661f10", "#94301b", "#c84a2e", "#ff8466", "#ff9a80", "#ffc2b2", "#ffe6df"] },
+      "red-hover": { "role": "primary", "displayName": "Redline Hover (blueprint)", "canonical": "#ff9a80", "tonalRamp": ["#3a1208", "#661f10", "#94301b", "#c84a2e", "#ff8466", "#ff9a80", "#ffc2b2", "#ffe6df"] },
+      "on-red": { "role": "neutral", "displayName": "On Redline (blueprint)", "canonical": "#0a2550", "tonalRamp": ["#030b19", "#061733", "#0a2550", "#1a3d72", "#355a92", "#6080b4", "#9ab0d6", "#d6e0f1"] },
+      "well": { "role": "neutral", "displayName": "Well (blueprint)", "canonical": "rgb(4 22 50 / 0.28)", "tonalRamp": ["rgb(4 22 50 / 0.06)", "rgb(4 22 50 / 0.1)", "rgb(4 22 50 / 0.16)", "rgb(4 22 50 / 0.22)", "rgb(4 22 50 / 0.28)", "rgb(4 22 50 / 0.4)", "rgb(4 22 50 / 0.55)", "rgb(4 22 50 / 0.7)"] },
+      "prussian": { "role": "neutral", "displayName": "Prussian (loader, theme color)", "canonical": "#0f3a72", "tonalRamp": ["#041327", "#08264d", "#0f3a72", "#1f5290", "#3a6ca9", "#6690c4", "#a0bbdf", "#dbe6f5"] },
+      "diazo-sheet": { "role": "neutral", "displayName": "Diazo Sheet (loader)", "canonical": "#e9eef1", "tonalRamp": ["#252a2d", "#41484c", "#5f676c", "#7f878c", "#a0a8ad", "#c2c9cd", "#dde3e6", "#e9eef1"] },
+      "light-paper": { "role": "neutral", "displayName": "Paper (whiteprint)", "canonical": "#eef2f3", "tonalRamp": ["#22282a", "#3d4547", "#5b6466", "#7c8587", "#9ea7a9", "#c2c9cb", "#d9e2e8", "#eef2f3"] },
+      "light-paper-deep": { "role": "neutral", "displayName": "Deep Paper (whiteprint)", "canonical": "#d9e2e8", "tonalRamp": ["#1f2830", "#38444d", "#55626c", "#75838d", "#97a5ae", "#b9c5cd", "#d9e2e8", "#eef3f6"] },
+      "light-ink": { "role": "neutral", "displayName": "Line (whiteprint)", "canonical": "#0f3a72", "tonalRamp": ["#041327", "#08264d", "#0f3a72", "#1f5290", "#3a6ca9", "#6690c4", "#a0bbdf", "#dbe6f5"] },
+      "light-ink-2": { "role": "neutral", "displayName": "Tinted Line (whiteprint)", "canonical": "#3c5f8d", "tonalRamp": ["#0e1a2a", "#1c3150", "#2c4870", "#3c5f8d", "#5a7ca8", "#83a0c4", "#b2c6de", "#e0e9f3"] },
+      "light-ink-rule": { "role": "neutral", "displayName": "Heavy Rule (whiteprint)", "canonical": "rgb(15 58 114 / 0.5)", "tonalRamp": ["rgb(15 58 114 / 0.04)", "rgb(15 58 114 / 0.1)", "rgb(15 58 114 / 0.18)", "rgb(15 58 114 / 0.3)", "rgb(15 58 114 / 0.45)", "rgb(15 58 114 / 0.5)", "rgb(15 58 114 / 0.65)", "rgb(15 58 114 / 0.8)"] },
+      "light-ink-bus": { "role": "neutral", "displayName": "Bus (whiteprint)", "canonical": "rgb(15 58 114 / 0.45)", "tonalRamp": ["rgb(15 58 114 / 0.04)", "rgb(15 58 114 / 0.1)", "rgb(15 58 114 / 0.18)", "rgb(15 58 114 / 0.3)", "rgb(15 58 114 / 0.45)", "rgb(15 58 114 / 0.5)", "rgb(15 58 114 / 0.65)", "rgb(15 58 114 / 0.8)"] },
+      "light-ink-3": { "role": "neutral", "displayName": "Fine Rule (whiteprint)", "canonical": "rgb(15 58 114 / 0.3)", "tonalRamp": ["rgb(15 58 114 / 0.04)", "rgb(15 58 114 / 0.1)", "rgb(15 58 114 / 0.18)", "rgb(15 58 114 / 0.3)", "rgb(15 58 114 / 0.45)", "rgb(15 58 114 / 0.5)", "rgb(15 58 114 / 0.65)", "rgb(15 58 114 / 0.8)"] },
+      "light-ink-4": { "role": "neutral", "displayName": "Hairline (whiteprint)", "canonical": "rgb(15 58 114 / 0.1)", "tonalRamp": ["rgb(15 58 114 / 0.04)", "rgb(15 58 114 / 0.1)", "rgb(15 58 114 / 0.18)", "rgb(15 58 114 / 0.3)", "rgb(15 58 114 / 0.45)", "rgb(15 58 114 / 0.5)", "rgb(15 58 114 / 0.65)", "rgb(15 58 114 / 0.8)"] },
+      "light-hi-line": { "role": "secondary", "displayName": "Highlighter Line (whiteprint amber)", "canonical": "#8a5d00", "tonalRamp": ["#2a1c00", "#4a3200", "#704c00", "#8a5d00", "#c98d1a", "#e0ad4a", "#efcf8c", "#f9ecd0"] },
+      "light-red": { "role": "primary", "displayName": "Redline (whiteprint)", "canonical": "#c4401b", "tonalRamp": ["#300e05", "#5a1a09", "#86270f", "#a93514", "#c4401b", "#e06a49", "#f0a690", "#fbe0d8"] },
+      "light-red-hover": { "role": "primary", "displayName": "Redline Hover (whiteprint)", "canonical": "#a93514", "tonalRamp": ["#300e05", "#5a1a09", "#86270f", "#a93514", "#c4401b", "#e06a49", "#f0a690", "#fbe0d8"] },
+      "light-on-red": { "role": "neutral", "displayName": "On Redline (whiteprint)", "canonical": "#ffffff", "tonalRamp": ["#262626", "#474747", "#6b6b6b", "#8f8f8f", "#b3b3b3", "#d4d4d4", "#ededed", "#ffffff"] },
+      "light-well": { "role": "neutral", "displayName": "Well (whiteprint)", "canonical": "rgb(15 58 114 / 0.035)", "tonalRamp": ["rgb(15 58 114 / 0.02)", "rgb(15 58 114 / 0.035)", "rgb(15 58 114 / 0.06)", "rgb(15 58 114 / 0.1)", "rgb(15 58 114 / 0.16)", "rgb(15 58 114 / 0.24)", "rgb(15 58 114 / 0.35)", "rgb(15 58 114 / 0.5)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The name on the cover only, uppercase, spanned by a dimension line." },
+      "headline": { "displayName": "Headline", "purpose": "Sheet titles with the double drawing-title underline." },
+      "title": { "displayName": "Title", "purpose": "Revision roles; the cover role line and detail titles run a step smaller." },
+      "title-sm": { "displayName": "Title Small", "purpose": "Legend entries, title-block project line, index name, legend and end-of-set titles." },
+      "lead": { "displayName": "Lead", "purpose": "Cover tagline within 40ch; first general note and contact lead are close variants." },
+      "body": { "displayName": "Body", "purpose": "Reading text with tabular numerals; notes 1.0625rem within 64ch, summaries within 52ch." },
+      "label": { "displayName": "Label", "purpose": "Uppercase field labels in drafting objects and forms, and the text of the top-right controls." },
+      "mono": { "displayName": "Mono", "purpose": "Uppercase sheet numbers, codes, dates, dimensions, plotter status." },
+      "hand": { "displayName": "Hand", "purpose": "Redline and checker markup notes, rotated -2 to -3deg." },
+      "button": { "displayName": "Button", "purpose": "Uppercase action button labels." }
+    },
+    "shadows": [
+      { "name": "drawer-lift", "value": "-18px 0 40px -18px rgb(3 14 32 / 0.55)", "purpose": "Sheet-index drawer only; backdrop rgb(4 18 40 / 0.35) on the blueprint, rgb(15 58 114 / 0.18) on the whiteprint." }
+    ],
+    "motion": [
+      { "name": "ease-out", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "State changes (0.2-0.45s), breaker blades (0.5-0.6s), drawer entry, switch knob, cover text rise." },
+      { "name": "ease-plot", "value": "cubic-bezier(0.45, 0, 0.2, 1)", "purpose": "Plotter stroke draws (1.4-1.6s), loader exposure wipe (0.9s), print wipe (0.7s), dimension line reveal." },
+      { "name": "plot", "value": "stroke-dasharray: 1; stroke-dashoffset 1 -> 0 on pathLength=1 strokes", "purpose": "How every drawing enters; labels fade in after ~0.9s." },
+      { "name": "print-wipe", "value": "::view-transition-new(root) clip-path inset(0 0 100% 0) -> inset(0) over 0.7s ease-plot", "purpose": "Switching prints wipes the new sheet down over the old one; skipped under reduced motion." },
+      { "name": "drawer", "value": "opacity 0.3s + translate 24px -> 0 over 0.35s ease-out, @starting-style, display/overlay allow-discrete", "purpose": "Sheet-index drawer open and close." },
+      { "name": "state", "value": "0.2-0.25s ease-out", "purpose": "Button, link, control, and index hover/current transitions." },
+      { "name": "reduced-motion", "value": "prefers-reduced-motion: reduce", "purpose": "Loader hidden, smooth scroll off, print wipe skipped, drawings and breakers shown in final state." }
+    ],
+    "breakpoints": [
+      { "name": "title-block-4col / theme-names", "value": "560px" },
+      { "name": "field-row", "value": "620px" },
+      { "name": "sheet-frame / index-label", "value": "760px" },
+      { "name": "grids", "value": "900px" },
+      { "name": "cover-split", "value": "960px" },
+      { "name": "contact-split", "value": "1000px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Redline fill; the single primary action per surface layer.",
+      "html": "<a class=\"ds-btn ds-btn-primary\" href=\"#\">Issue an RFI <svg class=\"ds-arrow\" viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M2 8h11M9 4l4 4-4 4\"/></svg></a>",
+      "css": ".ds-btn{display:inline-flex;align-items:center;justify-content:center;gap:.6rem;min-height:44px;padding:.65rem 1.1rem;font-family:var(--font-barlow-condensed),'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;border-radius:0;cursor:pointer;transition:background-color .25s cubic-bezier(.16,1,.3,1),border-color .25s cubic-bezier(.16,1,.3,1)}.ds-btn .ds-arrow{width:1rem;height:1rem;transition:translate .35s cubic-bezier(.16,1,.3,1)}.ds-btn:hover .ds-arrow{translate:3px 0}.ds-btn:active{translate:0 1px}.ds-btn:focus-visible{outline:2px solid var(--hi-line,#f4de4c);outline-offset:3px}.ds-btn-primary{background:var(--red,#ff8466);color:var(--on-red,#0a2550)}.ds-btn-primary:hover{background:var(--red-hover,#ff9a80)}"
+    },
+    {
+      "name": "Ghost Button",
+      "kind": "button",
+      "refersTo": "button-ghost",
+      "description": "Outlined secondary action on paper.",
+      "html": "<a class=\"ds-btn-ghost\" href=\"#\">Read the set <svg viewBox=\"0 0 16 16\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" width=\"16\" height=\"16\"><path d=\"M8 2v11M4 9l4 4 4-4\"/></svg></a>",
+      "css": ".ds-btn-ghost{display:inline-flex;align-items:center;gap:.6rem;min-height:44px;padding:.65rem 1.1rem;background:var(--paper,#0f3a72);color:var(--ink,#e8f1ff);border:1.5px solid var(--ink-3,rgb(232 241 255 / .3));border-radius:0;font-family:var(--font-barlow-condensed),'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:border-color .25s cubic-bezier(.16,1,.3,1)}.ds-btn-ghost svg{transition:translate .35s cubic-bezier(.16,1,.3,1)}.ds-btn-ghost:hover{border-color:var(--ink,#e8f1ff)}.ds-btn-ghost:hover svg{translate:0 3px}.ds-btn-ghost:focus-visible{outline:2px solid var(--hi-line,#f4de4c);outline-offset:3px}"
+    },
+    {
+      "name": "Control Block",
+      "kind": "nav",
+      "refersTo": "control-button",
+      "description": "Top-right chrome: JV monogram, Blue/Light print switch, and the Index button that opens the sheet-index drawer. The switch track's pill radius is shipped drift, not a precedent.",
+      "html": "<div class=\"ds-controls\"><a class=\"ds-logo-link\" href=\"#\" aria-label=\"Back to top\"><svg class=\"ds-logo\" viewBox=\"0 0 48 48\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2.25\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><rect x=\"1.5\" y=\"1.5\" width=\"45\" height=\"45\" stroke-width=\"1.25\"/><path d=\"M17 11v18a8 8 0 0 1-8 8\"/><path d=\"M26 11l7.5 25L41 11\"/><circle class=\"ds-pad\" cx=\"17\" cy=\"11\" r=\"3\"/><circle class=\"ds-pad\" cx=\"9\" cy=\"37\" r=\"3\"/><circle class=\"ds-pad\" cx=\"26\" cy=\"11\" r=\"3\"/><circle class=\"ds-pad\" cx=\"41\" cy=\"11\" r=\"3\"/><circle cx=\"33.5\" cy=\"36\" r=\"2.25\" fill=\"currentColor\" stroke=\"none\"/></svg></a><button type=\"button\" role=\"switch\" aria-checked=\"false\" aria-label=\"Light mode\" class=\"ds-switch\"><span class=\"ds-name ds-on\">Blue</span><span class=\"ds-track\"><span class=\"ds-knob\"></span></span><span class=\"ds-name\">Light</span></button><button type=\"button\" class=\"ds-toggle\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"M7 3h13v15\"/><rect x=\"4\" y=\"6\" width=\"13\" height=\"15\"/><path d=\"M11 21v-4h6M7 10h7M7 13h5\"/></svg><span>Index</span></button></div>",
+      "css": ".ds-controls{display:inline-flex;align-items:stretch;border:1.5px solid var(--ink-rule,rgb(232 241 255 / .45));background:var(--paper,#0f3a72);color:var(--ink,#e8f1ff)}.ds-controls>*+*{border-left:1px solid var(--ink-3,rgb(232 241 255 / .3))}.ds-logo-link{display:grid;place-items:center;padding:.4rem;color:inherit}.ds-logo{width:2.25rem;height:2.25rem}.ds-logo .ds-pad{fill:var(--paper,#0f3a72)}.ds-logo-link:hover .ds-logo path{stroke:var(--hi-line,#f4de4c)}.ds-switch,.ds-toggle{display:inline-flex;align-items:center;gap:.55rem;min-height:44px;padding:0 .85rem;border:0;border-radius:0;background:transparent;color:inherit;font-family:var(--font-barlow),Barlow,sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-switch:hover,.ds-toggle:hover{background:var(--ink-4,rgb(232 241 255 / .14))}.ds-switch:focus-visible,.ds-toggle:focus-visible,.ds-logo-link:focus-visible{outline:2px solid var(--hi-line,#f4de4c);outline-offset:3px}.ds-name{color:var(--ink-2,#b4cff2)}.ds-name.ds-on{color:var(--ink,#e8f1ff)}.ds-track{position:relative;width:2.25rem;height:1.125rem;border:1.5px solid currentColor;border-radius:999px}.ds-knob{position:absolute;top:2px;left:2px;width:.625rem;height:.625rem;border-radius:50%;background:currentColor;transition:translate .35s cubic-bezier(.16,1,.3,1)}.ds-switch[aria-checked=true] .ds-knob{translate:1.125rem 0}"
+    },
+    {
+      "name": "Sheet Index Drawer",
+      "kind": "nav",
+      "refersTo": "drawer",
+      "description": "Right-hand popover drawer: ruled sheet list with the current sheet highlighted, primary RFI action at the foot.",
+      "html": "<aside class=\"ds-drawer\"><div class=\"ds-dh\"><div><a class=\"ds-dn\" href=\"#\">Jasmine Vir</a><p class=\"ds-dr\">Electrical Engineer</p></div><button type=\"button\" class=\"ds-close\" aria-label=\"Close sheet index\"><svg viewBox=\"0 0 24 24\" width=\"20\" height=\"20\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M6 6l12 12M18 6L6 18\"/></svg></button></div><nav><p class=\"ds-il\">Sheet index</p><a href=\"#\"><span>E-000</span><span>Cover</span></a><a href=\"#\" aria-current=\"true\"><span>E-100</span><span>General notes</span></a><a href=\"#\"><span>E-200</span><span>Revision history</span></a></nav><a class=\"ds-rfi\" href=\"#\">Issue an RFI</a></aside>",
+      "css": ".ds-drawer{display:flex;flex-direction:column;width:320px;padding:1.5rem 1.25rem 1.25rem;border:1.5px solid var(--ink-rule,rgb(232 241 255 / .45));background:var(--paper,#0f3a72);color:var(--ink,#e8f1ff);box-shadow:-18px 0 40px -18px rgb(3 14 32 / .55);font-family:var(--font-barlow),Barlow,sans-serif}.ds-dh{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem}.ds-dn{font-family:var(--font-barlow-condensed),'Barlow Condensed',sans-serif;font-weight:600;font-size:1.5rem;line-height:1;text-transform:uppercase;letter-spacing:.01em;text-decoration:none;color:inherit}.ds-dr{margin:.4rem 0 0;font-size:.9375rem;color:var(--ink-2,#b4cff2)}.ds-close{display:inline-flex;align-items:center;min-height:44px;margin:-.5rem -.5rem 0 0;padding:0 .6rem;border:0;border-radius:0;background:transparent;color:inherit;cursor:pointer;transition:background-color .2s cubic-bezier(.16,1,.3,1)}.ds-close:hover{background:var(--ink-4,rgb(232 241 255 / .14))}.ds-drawer nav{margin-top:2rem}.ds-il{margin:0;padding-bottom:.5rem;border-bottom:1px solid var(--ink-3,rgb(232 241 255 / .3));font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2,#b4cff2)}.ds-drawer nav a{display:grid;grid-template-columns:3.4rem 1fr;align-items:baseline;padding:.6rem .4rem;border-bottom:1px solid var(--ink-4,rgb(232 241 255 / .14));font-size:.9375rem;line-height:1.3;color:inherit;text-decoration:none;transition:background-color .25s cubic-bezier(.16,1,.3,1)}.ds-drawer nav a span:first-child{font-family:var(--font-red-hat-mono),'Red Hat Mono',monospace;font-size:.75rem;color:var(--ink-2,#b4cff2)}.ds-drawer nav a:hover{background:var(--ink-4,rgb(232 241 255 / .14))}.ds-drawer a:focus-visible,.ds-close:focus-visible{outline:2px solid var(--hi-line,#f4de4c);outline-offset:3px}.ds-drawer nav a[aria-current]{background:var(--hi,#f4de4c);color:var(--on-hi,#0a2550)}.ds-drawer nav a[aria-current] span:first-child{color:var(--on-hi,#0a2550)}.ds-rfi{display:flex;justify-content:center;align-items:center;min-height:44px;margin-top:2rem;padding:.65rem 1.1rem;background:var(--red,#ff8466);color:var(--on-red,#0a2550);font-family:var(--font-barlow-condensed),'Barlow Condensed',sans-serif;font-weight:600;font-size:1rem;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:background-color .25s cubic-bezier(.16,1,.3,1)}.ds-rfi:hover{background:var(--red-hover,#ff9a80)}"
+    },
+    {
+      "name": "Ruled Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Labelled field drawn as a baseline rule; highlighter on focus, redline on error.",
+      "html": "<div class=\"ds-field-wrap\"><label class=\"ds-field\"><span>From</span><input></label><label class=\"ds-field ds-invalid\"><span>Email</span><input aria-invalid=\"true\"><small>Enter an email address.</small></label></div>",
+      "css": ".ds-field-wrap{display:grid;gap:1.25rem;padding:1.5rem;background:var(--paper,#0f3a72)}.ds-field{display:grid;gap:.35rem}.ds-field>span{font-family:var(--font-barlow),Barlow,sans-serif;font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2,#b4cff2)}.ds-field input{width:100%;padding:.5rem 0;background:transparent;border:0;border-bottom:1.5px solid var(--ink-3,rgb(232 241 255 / .3));border-radius:0;color:var(--ink,#e8f1ff);font:inherit;font-size:1.0625rem;caret-color:var(--hi-line,#f4de4c);transition:border-color .2s cubic-bezier(.16,1,.3,1)}.ds-field input:hover{border-color:var(--ink-2,#b4cff2)}.ds-field input:focus{outline:none;border-color:var(--hi-line,#f4de4c)}.ds-invalid input{border-color:var(--red,#ff8466)}.ds-field small{font-size:.9375rem;color:var(--red,#ff8466)}"
+    },
+    {
+      "name": "Title Block",
+      "kind": "card",
+      "refersTo": "title-block-cell",
+      "description": "Ruled drafting grid of labelled values inside a heavy rule; placeholder values redlined.",
+      "html": "<dl class=\"ds-tb\"><div class=\"ds-tb-wide\"><dt>Project</dt><dd>Portfolio of Jasmine Vir</dd></div><div><dt>Drawn by</dt><dd>J. Vir</dd></div><div><dt>Location</dt><dd><span class=\"ds-tbd\">City, Country</span></dd></div><div><dt>Scale</dt><dd>NTS</dd></div><div><dt>Sheet</dt><dd>E-000</dd></div></dl>",
+      "css": ".ds-tb{display:grid;grid-template-columns:repeat(4,auto);max-width:560px;margin:0;border:1.5px solid var(--ink-rule,rgb(232 241 255 / .45));background:var(--paper,#0f3a72);color:var(--ink,#e8f1ff);font-family:var(--font-barlow),Barlow,sans-serif}.ds-tb div{padding:.5rem .75rem .6rem;border-right:1px solid var(--ink-3,rgb(232 241 255 / .3));border-bottom:1px solid var(--ink-3,rgb(232 241 255 / .3))}.ds-tb-wide{grid-column:1/-1}.ds-tb dt{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-2,#b4cff2)}.ds-tb dd{margin:.15rem 0 0;font-size:.9375rem;line-height:1.3}.ds-tb-wide dd{font-family:var(--font-barlow-condensed),'Barlow Condensed',sans-serif;font-weight:600;font-size:1.25rem;text-transform:uppercase;letter-spacing:.02em}.ds-tbd{text-decoration:underline wavy var(--red,#ff8466);text-decoration-thickness:1px;text-underline-offset:.28em;text-decoration-skip-ink:none}"
+    },
+    {
+      "name": "Sheet Header",
+      "kind": "custom",
+      "refersTo": "detail-bubble",
+      "description": "Detail bubble plus drafted sheet title with double underline and mono sheet meta.",
+      "html": "<header class=\"ds-sh\"><span class=\"ds-bubble\"><span>1</span><span>E-100</span></span><div><h2 class=\"ds-sh-title\">General notes</h2><p class=\"ds-sh-meta\">Sheet E-100 · 2 of 5 · Scale: NTS</p></div></header>",
+      "css": ".ds-sh{display:flex;align-items:center;gap:.9rem;padding:1.5rem;background:var(--paper,#0f3a72);color:var(--ink,#e8f1ff)}.ds-bubble{display:grid;grid-template-rows:1fr 1fr;place-items:center;width:3.25rem;height:3.25rem;flex:none;border:1.5px solid var(--ink,#e8f1ff);border-radius:50%;font-family:var(--font-red-hat-mono),'Red Hat Mono',monospace;line-height:1;background:linear-gradient(var(--ink,#e8f1ff),var(--ink,#e8f1ff)) center/100% 1.5px no-repeat}.ds-bubble span:first-child{align-self:end;padding-bottom:.3rem;font-size:1.05rem;font-weight:500}.ds-bubble span:last-child{align-self:start;padding-top:.35rem;font-size:.625rem;color:var(--ink-2,#b4cff2)}.ds-sh-title{display:inline-block;margin:0;padding-bottom:.65rem;font-family:var(--font-barlow-condensed),'Barlow Condensed',sans-serif;font-weight:600;font-size:clamp(1.875rem,3.6vw,3rem);line-height:.95;letter-spacing:.005em;text-transform:uppercase;background:linear-gradient(var(--ink,#e8f1ff),var(--ink,#e8f1ff)) left bottom 5px/100% 3px no-repeat,linear-gradient(var(--ink,#e8f1ff),var(--ink,#e8f1ff)) left bottom/100% 1px no-repeat}.ds-sh-meta{margin:.6rem 0 0;font-family:var(--font-red-hat-mono),'Red Hat Mono',monospace;font-size:.6875rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-2,#b4cff2)}"
+    },
+    {
+      "name": "Breaker",
+      "kind": "custom",
+      "description": "Sheet breaker on the bus; blade closes and takes the highlighter line when its sheet is live.",
+      "html": "<div class=\"ds-brk-wrap\" tabindex=\"0\"><svg class=\"ds-brk\" viewBox=\"0 0 120 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\"><path d=\"M0 12h50\"/><circle cx=\"53\" cy=\"12\" r=\"3\"/><path class=\"ds-blade\" d=\"M56 12h26\" style=\"transform-origin:53px 12px\"/><circle cx=\"85\" cy=\"12\" r=\"3\"/><path d=\"M88 12h32\"/></svg></div>",
+      "css": ".ds-brk-wrap{padding:1.5rem;background:var(--paper,#0f3a72)}.ds-brk{width:120px;height:24px;color:var(--ink-2,#b4cff2);transition:color .4s cubic-bezier(.16,1,.3,1)}.ds-brk .ds-blade{rotate:-30deg;transition:rotate .6s cubic-bezier(.16,1,.3,1)}.ds-brk-wrap:hover .ds-brk,.ds-brk-wrap:focus-visible .ds-brk{color:var(--hi-line,#f4de4c)}.ds-brk-wrap:hover .ds-blade,.ds-brk-wrap:focus-visible .ds-blade{rotate:0deg}.ds-brk-wrap:focus-visible{outline:2px solid var(--hi-line,#f4de4c);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Issued Drawing Set",
+    "overview": "The whole site is one electrical drawing set, issued in two print processes from the same originals. The default is a blueprint (cyanotype): Prussian-blue paper with a mottled exposure and darkened edges, pale diazo-white linework and lettering. The alternate is a whiteprint (diazo): pale paper with Prussian linework, an amber highlighter line, and a darker redline. Every surface is a drafting object with a real job on a real sheet: a fixed border with zone letters and numbers, a title block, a sheet index, numbered general notes, a symbol legend, a revision table, detail bubbles, and an RFI form. Nothing is a card, and nothing is rounded except what a draftsman would draw with a circle template.\n\nDensity is that of a working sheet: generous margins around content, fine and heavy rules doing all structural work, drafted condensed capitals for every heading, set at a moderate scale so the sheet reads as a drawing rather than a poster. A single one-line power diagram is the system's spine: the cover's switchboard feeds a bus down the left margin, each sheet hangs off it through a breaker, and scrolling energizes it with the highlighter. Motion behaves like a plotter and a print machine: strokes draw on, and switching prints wipes the new sheet down over the old one.\n\nColor is spent like ink on a markup set. Paper and line carry everything; the highlighter means energized, checked, current, or focused; the redline means placeholder, error, or the one primary action. Those meanings are fixed in both prints. A small control block at the top right (JV monogram, print switch, index button) is the only chrome; the sheet index lives in a drawer opened on demand.",
+    "keyCharacteristics": [
+      "Two prints, one system: every color is a custom property, redefined as a whole set under the whiteprint theme; components never hard-code a color.",
+      "Paper ground with a shared texture layer (vignette, exposure mottle, paper fibre) on every opaque surface, recut for each print.",
+      "Linework hierarchy instead of elevation: 1px fine rules, 1.5px heavy rules, double rules under drawing titles.",
+      "Barlow Condensed drafted capitals for headings, Barlow for reading, Red Hat Mono for numbers and codes, Kalam for handwritten markup.",
+      "Square corners everywhere; circles only as drafting symbols.",
+      "Authored SVG drawings (one-line, breakers, legend symbols, detail drawings, the monogram) with round-capped strokes so every stroke can plot.",
+      "Placeholder content is visibly redlined until replaced."
+    ],
+    "rules": [
+      { "name": "The Two Pens Rule", "body": "Only two colors exist beyond paper and line. Highlighter means energized, checked, current, or focused; red means placeholder, error, or primary action. Never use either decoratively, and never swap their jobs, in either print.", "section": "colors" },
+      { "name": "The Two Prints Rule", "body": "Both themes are the same drawing set. A new color is added as a custom property in both the blueprint `:root` and the whiteprint override, never as a literal in a component; role names stay the same across prints and only values change.", "section": "colors" },
+      { "name": "The One Redline Action Rule", "body": "A surface layer carries at most one filled redline button. On the sheet that is the cover's \"Issue an RFI\"; every other action there is a ghost outline. The sheet-index drawer is its own overlay layer, so its RFI button is primary.", "section": "colors" },
+      { "name": "The Line Is Not Text Rule", "body": "Fine Rule and Hairline are line weights, not text colors. Any readable text uses Line or Tinted Line.", "section": "colors" },
+      { "name": "The Drafted Capitals Rule", "body": "Every heading and action button is Barlow Condensed 600, uppercase, lightly tracked. Utility controls (print switch, index toggle) are tracked Barlow label caps. Reading text is never set in capitals.", "section": "typography" },
+      { "name": "The Mono Is For Numbers Rule", "body": "Red Hat Mono carries sheet numbers, codes, dates, dimensions, and plotter status, never sentences or field labels. Labels are tracked Barlow caps.", "section": "typography" },
+      { "name": "The Handwriting Is Markup Rule", "body": "Kalam appears only as a pen annotation in Redline or Highlighter Line (or Tinted Line for \"Fed from\" notes), slightly rotated, never as a heading or body.", "section": "typography" },
+      { "name": "The Hang It On The Bus Rule", "body": "Every sheet header connects to the left-margin bus through its breaker; new sections join the circuit rather than float free of it.", "section": "layout" },
+      { "name": "The Line Weight Is Depth Rule", "body": "Hierarchy between surfaces is expressed by 1px fine versus 1.5px heavy rules and by double title rules, never by shadows. The only shadow belongs to the drawer, which genuinely overlays the sheet.", "section": "elevation" },
+      { "name": "The Circle Template Rule", "body": "A circle is a symbol, never a softened corner. If it is not a node, pad, terminal, bubble, or component symbol, it is square.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do build every new surface as a drafting object (sheet, schedule, detail, note, table) on Paper with Line linework, and check it in both prints.",
+      "Do add every new color as a custom property in both the blueprint `:root` and the `:root[data-theme=\"light\"]` override.",
+      "Do keep the highlighter for energized, checked, current, and focus states (Highlighter Line for strokes and text, Checker's Highlighter for fills), and red for placeholders, errors, and the single primary action.",
+      "Do set every heading in Barlow Condensed 600 uppercase with the double drawing-title underline on sheet and detail titles.",
+      "Do separate and frame with 1px Fine Rule / Hairline and 1.5px Heavy Rule lines.",
+      "Do author drawings as inline SVG with `pathLength=1` strokes, 1.5px round-capped, so they can plot on entry with the plot curve (cubic-bezier(0.45, 0, 0.2, 1)).",
+      "Do keep chrome inside the top-right control block and put navigation in the drawer rather than docking new fixed panels.",
+      "Do show content in its final state without JavaScript and under reduced motion."
+    ],
+    "donts": [
+      "Don't hard-code a color literal in a component; it will be wrong in the other print.",
+      "Don't round corners on containers, buttons, controls, or inputs; circles are drafting symbols only.",
+      "Don't add shadows to express hierarchy; only the overlaying drawer gets a shadow.",
+      "Don't put a second filled redline button on the same surface layer.",
+      "Don't set readable text in Fine Rule or Hairline; they are line weights.",
+      "Don't use Red Hat Mono for sentences or field labels, or Kalam for anything but pen markup.",
+      "Don't fade or slide drawings in; they plot."
+    ]
+  }
+}
