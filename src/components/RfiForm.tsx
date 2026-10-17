@@ -5,16 +5,20 @@ import { Arrow } from "./drawings";
 
 type Field = "name" | "email" | "message";
 type Errors = Partial<Record<Field, string>>;
+type Status = "idle" | "sending" | "sent" | "failed";
 
-const subjects = ["A full-time role", "A project or contract", "Something else"];
+const subjects = ["A full-time role", "An internship or OJT", "A project or contract", "Something else"];
 
+/* RFI form: posts to /api/rfi, which emails Jasmine through Resend. If the
+   mail service isn't configured yet, it falls back to the visitor's email app. */
 export function RfiForm({ to }: { to: string }) {
   const [errors, setErrors] = useState<Errors>({});
-  const [sent, setSent] = useState(false);
+  const [status, setStatus] = useState<Status>("idle");
 
-  function submit(e: React.FormEvent<HTMLFormElement>) {
+  async function submit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    const data = new FormData(e.currentTarget);
+    const form = e.currentTarget;
+    const data = new FormData(form);
     const get = (k: string) => String(data.get(k) ?? "").trim();
 
     const next: Errors = {};
@@ -23,15 +27,44 @@ export function RfiForm({ to }: { to: string }) {
     if (get("message").length < 10) next.message = "Describe the role or project in a sentence or two.";
     setErrors(next);
     if (Object.keys(next).length) {
-      e.currentTarget.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
+      form.querySelector<HTMLElement>("[aria-invalid='true']")?.focus();
       return;
     }
 
-    const org = get("org");
-    const subject = `RFI: ${get("subject")}${org ? ` (${org})` : ""}`;
-    const body = `${get("message")}\n\n${get("name")}${org ? `, ${org}` : ""}\n${get("email")}`;
-    window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    const payload = {
+      name: get("name"),
+      email: get("email"),
+      org: get("org"),
+      subject: get("subject"),
+      message: get("message"),
+      website: get("website"),
+    };
+
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/rfi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (res.ok) {
+        setStatus("sent");
+        form.reset();
+        return;
+      }
+      const { error } = await res.json().catch(() => ({ error: "" }));
+      if (error === "not-configured") {
+        // No mail service yet: hand the RFI to the visitor's email app instead.
+        const subject = `RFI: ${payload.subject}${payload.org ? ` (${payload.org})` : ""}`;
+        const body = `${payload.message}\n\n${payload.name}${payload.org ? `, ${payload.org}` : ""}\n${payload.email}`;
+        window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        setStatus("idle");
+        return;
+      }
+      setStatus("failed");
+    } catch {
+      setStatus("failed");
+    }
   }
 
   const err = (f: Field) =>
@@ -40,6 +73,13 @@ export function RfiForm({ to }: { to: string }) {
         {errors[f]}
       </p>
     ) : null;
+
+  const statusText = {
+    idle: "Goes straight to Jasmine's inbox.",
+    sending: "Sending…",
+    sent: "RFI issued. Jasmine will reply by email.",
+    failed: "That didn't send. Please try again in a moment.",
+  }[status];
 
   return (
     <form className="rfi" onSubmit={submit} noValidate>
@@ -83,12 +123,15 @@ export function RfiForm({ to }: { to: string }) {
         {err("message")}
       </label>
 
+      {/* Honeypot for bots; hidden from people and assistive tech. */}
+      <input name="website" tabIndex={-1} autoComplete="off" className="hp" aria-hidden="true" />
+
       <div className="rfi-foot">
-        <button type="submit" className="btn btn-primary">
-          Issue RFI <Arrow />
+        <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
+          {status === "sending" ? "Sending" : "Issue RFI"} <Arrow />
         </button>
-        <p className="rfi-status" role="status">
-          {sent ? `Your email app should open with the RFI drafted. If it didn't, write to ${to}.` : "Opens your email app with the RFI filled in."}
+        <p className="rfi-status" role="status" data-status={status}>
+          {statusText}
         </p>
       </div>
     </form>

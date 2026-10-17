@@ -19,16 +19,16 @@ import {
   DetailDrawing,
   Ground,
   IndexIcon,
-  LegendSymbol,
   Logo,
   OneLine,
 } from "@/components/drawings";
 import { Assistant } from "@/components/Assistant";
 import { CertBoard } from "@/components/CertBoard";
-import { Dog } from "@/components/Dog";
+import { ChatPanel } from "@/components/ChatPanel";
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { ProjectDesk } from "@/components/ProjectDesk";
 import { RfiForm } from "@/components/RfiForm";
+import { SkillStack } from "@/components/SkillStack";
 import { T } from "@/components/T";
 import { SkipLoader, Wiring } from "@/components/Wiring";
 
@@ -167,30 +167,7 @@ export default function Home() {
 
       <Assistant />
       <div id="assistant" popover="auto" className="chat-panel" aria-label="Site assistant">
-        <div className="chat-head">
-          <Dog className="dog dog-sm" />
-          <div>
-            <p className="chat-title">Site assistant</p>
-            <p className="chat-status">Live chat not connected yet</p>
-          </div>
-          <button type="button" popoverTarget="assistant" popoverTargetAction="hide" className="drawer-close" aria-label="Close the site assistant">
-            <CloseIcon />
-          </button>
-        </div>
-        <p className="chat-bubble">
-          Hi! I&apos;m here to help you find your way around {profile.name}&apos;s drawing set. Where do you want to go?
-        </p>
-        <ul className="chat-options">
-          {sectionSheets.map((s) => (
-            <li key={s.id}>
-              <a href={`#${s.id}`}>
-                <span className="index-num">{s.number}</span>
-                {s.title}
-                <Arrow />
-              </a>
-            </li>
-          ))}
-        </ul>
+        <ChatPanel />
       </div>
 
       <main className="drawing-set">
@@ -276,25 +253,14 @@ export default function Home() {
                 </svg>
                 <figcaption>
                   <span className="tbd">Portrait</span>
-                  <span>Opening for photo · 4:5</span>
+                  <span>Opening for photo · 1:1</span>
                 </figcaption>
               </figure>
             </div>
 
             <div className="legend" data-plot>
               <h3 className="legend-title">Legend: skills</h3>
-              <ul className="legend-list">
-                {skills.map((d) => (
-                  <li key={d.name}>
-                    <LegendSymbol symbol={d.symbol} />
-                    <span className="legend-name">{d.name}</span>
-                    <span className="legend-note">
-                      {d.note && <span className="legend-qualifier">{d.note}: </span>}
-                      {d.items.join(" · ")}
-                    </span>
-                  </li>
-                ))}
-              </ul>
+              <SkillStack groups={skills} />
             </div>
           </section>
 
@@ -430,26 +396,6 @@ export default function Home() {
                   Hiring for a role, or need an engineer on a project? Send a question and Jasmine will reply by email.
                 </p>
                 <dl className="contact-list">
-                  <div>
-                    <dt>Email</dt>
-                    <dd>
-                      <a href={`mailto:${unbracket(profile.email)}`}>
-                        <T>{profile.email}</T>
-                      </a>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Phone</dt>
-                    <dd>
-                      <T>{profile.phone}</T>
-                    </dd>
-                  </div>
-                  <div>
-                    <dt>Based in</dt>
-                    <dd>
-                      <T>{profile.location}</T>
-                    </dd>
-                  </div>
                   {profile.links.map((l) => (
                     <div key={l.label}>
                       <dt>{l.label}</dt>

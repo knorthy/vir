@@ -1,4 +1,4 @@
-import type { Drawing, Symbol } from "@/data/portfolio";
+import type { Drawing } from "@/data/portfolio";
 
 // Every stroked element carries pathLength=1 so CSS can "plot" it with
 // stroke-dasharray/offset regardless of its real length.
@@ -140,51 +140,6 @@ export function Arrow({ dir = "right" }: { dir?: "right" | "down" }) {
   return (
     <svg viewBox="0 0 16 16" className="arrow" aria-hidden="true" {...svgBase} strokeWidth="1.5">
       {dir === "right" ? <path d="M2 8h11M9 4l4 4-4 4" /> : <path d="M8 2v11M4 9l4 4 4-4" />}
-    </svg>
-  );
-}
-
-const symbols: Record<Symbol, React.ReactNode> = {
-  // duplex receptacle on a wall run
-  wiring: (
-    <>
-      <path {...L} d="M2 34h44" />
-      <circle {...L} cx="24" cy="20" r="10" />
-      <path {...L} d="M24 30v4M20 15v10M28 15v10" />
-    </>
-  ),
-  resistor: (
-    <>
-      <path {...L} d="M2 24h8l3-8 5 16 5-16 5 16 5-16 5 16 3-8h8" />
-    </>
-  ),
-  chip: (
-    <>
-      <rect {...L} x="12" y="8" width="24" height="32" />
-      <path {...L} d="M6 14h6M6 21h6M6 28h6M6 35h6M36 14h6M36 21h6M36 28h6M36 35h6" />
-      <path {...L} d="M21 8a3 3 0 0 0 6 0" />
-    </>
-  ),
-  cad: (
-    <>
-      <path {...L} d="M24 4v40M4 24h40" />
-      <rect {...L} x="18" y="18" width="12" height="12" />
-    </>
-  ),
-  // drafting pencil over a sketched curve
-  pen: (
-    <>
-      <path {...L} d="M30 6l12 12-22 22H8V28z" />
-      <path {...L} d="M26 10l12 12M8 40l6-6" />
-      <path {...L} d="M4 46c8-4 14 2 22-2" />
-    </>
-  ),
-};
-
-export function LegendSymbol({ symbol }: { symbol: Symbol }) {
-  return (
-    <svg viewBox="0 0 48 48" className="legend-symbol" aria-hidden="true" {...svgBase} strokeWidth="1.5">
-      {symbols[symbol]}
     </svg>
   );
 }

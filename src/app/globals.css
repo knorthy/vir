@@ -68,7 +68,7 @@ html {
   color: var(--ink);
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--band) + 12px);
-  scrollbar-color: var(--ink-3) var(--paper-deep);
+  scrollbar-width: none;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -1207,10 +1207,14 @@ html.loaded .loader {
 
 @media (min-width: 900px) {
   .about-grid {
-    grid-template-columns: minmax(0, 60ch) minmax(220px, 280px);
+    grid-template-columns: minmax(0, 60ch) 260px;
     justify-content: start;
     align-items: start;
-    gap: 3rem;
+    gap: 4rem;
+  }
+
+  .portrait {
+    margin-top: 0.4rem;
   }
 }
 
@@ -1253,7 +1257,7 @@ html.loaded .loader {
 
 .portrait {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 1;
   border: 1.5px solid var(--ink-2);
   max-width: 300px;
 }
@@ -1312,57 +1316,149 @@ html.loaded .loader {
   letter-spacing: 0.04em;
 }
 
-.legend-list li {
+/* Skills legend: exploded isometric stack with alternating callouts. */
+.stack {
+  position: relative;
   display: grid;
-  grid-template-columns: 3rem minmax(0, 1fr);
-  align-items: center;
-  column-gap: 1.25rem;
-  padding: 1rem 0;
-  border-bottom: 1px solid var(--ink-4);
+  max-width: 1080px;
+  margin-top: 1.5rem;
 }
 
-@media (min-width: 760px) {
-  .legend-list li {
-    grid-template-columns: 3.5rem minmax(10rem, 16rem) minmax(0, 1fr);
-  }
+.stack-svg {
+  width: 100%;
+  max-width: 420px;
+  height: auto;
+  justify-self: center;
+  overflow: visible;
 }
 
-.legend-symbol {
-  grid-row: span 2;
-  width: 3rem;
-  height: 3rem;
+.stack-layer {
+  transition: transform 1.1s cubic-bezier(0.2, 0.9, 0.25, 1) calc(var(--i) * 0.06s);
+}
+
+html.motion .stack:not([data-open]) .stack-layer {
+  transform: translateY(var(--collapse));
+}
+
+.stack-layer[data-on] {
+  transform: translateY(-12px);
+  transition-duration: 0.35s;
+  transition-delay: 0s;
+}
+
+.stack-top {
+  fill: var(--paper);
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  stroke-linejoin: round;
+}
+
+.stack-side {
+  fill: var(--paper-deep);
+  stroke: var(--ink);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}
+
+.stack-side-r {
+  fill: color-mix(in srgb, var(--paper-deep) 70%, var(--ink) 8%);
+}
+
+.stack-etch {
+  fill: none;
+  stroke: var(--ink-2);
+  stroke-width: 1;
+}
+
+.stack-dot {
+  fill: var(--ink-2);
+  stroke: none;
+}
+
+.stack-chip-text {
+  fill: var(--ink-2);
+  stroke: none;
+  font-family: var(--font-mono);
+  font-size: 6px;
+  letter-spacing: 0.08em;
+}
+
+.stack-layer[data-on] .stack-top,
+.stack-layer[data-on] .stack-side {
+  stroke: var(--hi-line);
+}
+
+.stack-layer[data-on] .stack-etch {
+  stroke: var(--hi-line);
+}
+
+.stack-labels {
+  display: grid;
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.stack-label {
+  max-width: 36ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--ink-2);
+  outline: none;
+  transition: opacity 0.25s var(--ease-out);
+}
+
+.stack-name {
+  font-weight: 600;
   color: var(--ink);
 }
 
-@media (min-width: 760px) {
-  .legend-symbol {
-    grid-row: auto;
-  }
-}
-
-.legend-name {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.2rem;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-  line-height: 1.15;
-}
-
-.legend-note {
-  color: var(--ink-2);
-  text-wrap: pretty;
-}
-
-.legend-qualifier {
+.stack-qualifier {
   font-family: var(--font-hand);
   color: var(--ink);
 }
 
+.stack[data-hover] .stack-label:not([data-on]) {
+  opacity: 0.45;
+}
 
+.stack-label:focus-visible {
+  outline: 2px solid var(--hi-line);
+  outline-offset: 4px;
+}
 
-.sep {
-  color: var(--ink-3);
+@media (min-width: 900px) {
+  /* The stack's height is the drawing's height, so each label's --y (its
+     plate's height as a share of the drawing) places it level with the plate. */
+  .stack {
+    display: block;
+    --half: min(210px, 18vw);
+  }
+
+  .stack-svg {
+    display: block;
+    width: calc(2 * var(--half));
+    margin: 0 auto;
+  }
+
+  .stack-labels {
+    margin: 0;
+  }
+
+  .stack-label {
+    position: absolute;
+    top: var(--y);
+    width: min(36ch, calc(50% - var(--half) - 2.5rem));
+    translate: 0 -50%;
+  }
+
+  .stack-label[data-side="left"] {
+    right: calc(50% + var(--half) + 2.5rem);
+    text-align: right;
+  }
+
+  .stack-label[data-side="right"] {
+    left: calc(50% + var(--half) + 2.5rem);
+  }
 }
 
 /* E-200 Revision history */
@@ -2082,13 +2178,16 @@ html.motion .dog-spark:nth-of-type(2n) {
 
 .chat-panel {
   inset: auto calc(var(--band) + 12px) calc(var(--band) + 110px) auto;
-  width: min(340px, calc(100vw - 2 * var(--band) - 24px));
+  width: min(400px, calc(100vw - 2 * var(--band) - 24px));
+  height: min(600px, calc(100svh - 2 * var(--band) - 140px));
   margin: 0;
-  padding: 1.25rem;
+  padding: 0;
   border: 1.5px solid var(--ink-rule);
+  border-radius: 16px;
   background: var(--texture), var(--paper);
   color: var(--ink);
-  box-shadow: 0 18px 40px -18px rgb(3 14 32 / 0.55);
+  box-shadow: 0 24px 50px -20px rgb(3 14 32 / 0.6);
+  overflow: hidden;
   opacity: 0;
   translate: 0 12px;
   transition:
@@ -2110,20 +2209,23 @@ html.motion .dog-spark:nth-of-type(2n) {
   }
 }
 
+.chat {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
 .chat-head {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-bottom: 0.9rem;
+  padding: 0.9rem 1rem;
   border-bottom: 1px solid var(--ink-3);
 }
 
 .chat-head > div {
   flex: 1;
-}
-
-.chat-head .drawer-close {
-  margin: 0 -0.5rem 0 0;
+  min-width: 0;
 }
 
 .chat-title {
@@ -2136,43 +2238,182 @@ html.motion .dog-spark:nth-of-type(2n) {
 }
 
 .chat-status {
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
   font-size: 0.8125rem;
   color: var(--ink-2);
 }
 
-.chat-bubble {
-  margin-top: 1rem;
-  padding: 0.75rem 0.9rem;
-  border: 1px solid var(--ink-3);
-  background: var(--well);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-}
-
-.chat-options {
-  margin-top: 0.75rem;
-}
-
-.chat-options a {
+.chat-close {
   display: grid;
-  grid-template-columns: 3.4rem 1fr auto;
-  align-items: center;
-  padding: 0.6rem 0.4rem;
-  border-bottom: 1px solid var(--ink-4);
-  font-size: 0.9375rem;
-  text-decoration: none;
-  transition: background-color 0.2s var(--ease-out);
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
-.chat-options a:hover {
+.chat-close:hover {
   background: var(--ink-4);
 }
 
-.chat-options .arrow {
-  width: 0.9rem;
-  height: 0.9rem;
+.chat-log {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  padding: 1rem;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.msg {
+  max-width: 88%;
+  padding: 0.65rem 0.9rem;
+  border-radius: 14px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.msg-model {
+  align-self: flex-start;
+  background: var(--ink-4);
+  border-top-left-radius: 4px;
+}
+
+.msg-user {
+  align-self: flex-end;
+  background: var(--ink);
+  color: var(--paper);
+  border-top-right-radius: 4px;
+}
+
+.typing {
+  display: inline-flex;
+  gap: 4px;
+  padding: 0.3rem 0;
+}
+
+.typing span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-2);
+  animation: typing 1s ease-in-out infinite;
+}
+
+.typing span:nth-child(2) {
+  animation-delay: 0.15s;
+}
+
+.typing span:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes typing {
+  50% {
+    opacity: 0.25;
+    translate: 0 -2px;
+  }
+}
+
+.chat-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.chip {
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--red);
+  border-radius: 999px;
+  font-size: 0.875rem;
+  line-height: 1.2;
+  text-align: left;
+  color: var(--ink);
+  cursor: pointer;
+  transition: background-color 0.2s var(--ease-out);
+}
+
+.chip:hover {
+  background: color-mix(in srgb, var(--red) 18%, transparent);
+}
+
+.chat-form {
+  display: flex;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem 0.5rem;
+  border-top: 1px solid var(--ink-3);
+}
+
+.chat-input {
+  flex: 1;
+  min-width: 0;
+  padding: 0.7rem 0.95rem;
+  border: 1.5px solid var(--ink-3);
+  border-radius: 12px;
+  font-size: 0.9375rem;
+  color: var(--ink);
+  background: var(--well);
+}
+
+.chat-input::placeholder {
   color: var(--ink-2);
+}
+
+.chat-input:focus {
+  outline: none;
+  border-color: var(--red);
+}
+
+.chat-send {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  border-radius: 12px;
+  background: var(--red);
+  color: var(--on-red);
+  cursor: pointer;
+  transition: opacity 0.2s var(--ease-out), background-color 0.2s var(--ease-out);
+}
+
+.chat-send svg {
+  width: 18px;
+  height: 18px;
+}
+
+.chat-send:hover:not(:disabled) {
+  background: var(--red-hover);
+}
+
+.chat-send:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.chat-disclaimer {
+  padding: 0 1rem 0.9rem;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--ink-2);
+}
+
+.hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.rfi-status[data-status="sent"] {
+  color: var(--hi-line);
+}
+
+.rfi-status[data-status="failed"] {
+  color: var(--red);
 }
 
 .nowrap {
@@ -2857,4 +3098,127 @@ a.pp-link:hover {
   .desk-blur {
     transition: none;
   }
+}
+
+/* No visible scrollbars on the page or the chat; scrolling still works. */
+html::-webkit-scrollbar,
+.chat-log::-webkit-scrollbar {
+  display: none;
+}
+
+.chat-log {
+  scrollbar-width: none;
+}
+
+/* While the chat is open, the conversation does the talking. */
+body:has(#assistant:popover-open) .dog-speech {
+  visibility: hidden;
+}
+
+/* Glass chat panel. */
+.chat-panel {
+  background: color-mix(in srgb, var(--paper) 78%, transparent);
+  backdrop-filter: blur(28px) saturate(1.5);
+  -webkit-backdrop-filter: blur(28px) saturate(1.5);
+  border-color: color-mix(in srgb, var(--ink) 28%, transparent);
+  box-shadow:
+    inset 0 1px 0 color-mix(in srgb, var(--ink) 22%, transparent),
+    0 24px 50px -20px rgb(3 14 32 / 0.6);
+}
+
+.msg-model {
+  background: color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.chat-input {
+  background: color-mix(in srgb, var(--paper) 45%, transparent);
+}
+
+/* Skills stack: plates are hoverable; leader lines draw on hover. */
+.stack-layer {
+  cursor: default;
+}
+
+.stack-leaders {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  display: none;
+}
+
+.stack-leaders path {
+  fill: none;
+  stroke: var(--hi-line);
+  stroke-width: 1.25;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  transition: stroke-dashoffset 0.5s var(--ease-plot);
+}
+
+.stack-leaders circle {
+  fill: var(--hi-line);
+  opacity: 0;
+  scale: 0.4;
+  transform-box: fill-box;
+  transform-origin: center;
+  transition:
+    opacity 0.2s var(--ease-out),
+    scale 0.3s var(--ease-out);
+}
+
+.stack-leaders g[data-on] path {
+  stroke-dashoffset: 0;
+}
+
+.stack-leaders g[data-on] circle {
+  opacity: 1;
+  scale: 1;
+  transition-delay: 0.4s;
+}
+
+.stack-label {
+  cursor: default;
+}
+
+.stack-label[data-on] .stack-name {
+  color: var(--hi-line);
+}
+
+@media (min-width: 900px) {
+  .stack-leaders {
+    display: block;
+  }
+
+  .stack {
+    --half: min(190px, 16vw);
+  }
+
+  .stack-label {
+    translate: 0 -0.7em;
+    width: min(32ch, calc(50% - var(--half) - 4rem));
+  }
+
+  .stack-label[data-side="left"] {
+    right: calc(50% + var(--half) + 4rem);
+  }
+
+  .stack-label[data-side="right"] {
+    left: calc(50% + var(--half) + 4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .stack-leaders path,
+  .stack-leaders circle {
+    transition: none;
+  }
+}
+
+/* Projects: the sheets rest in the middle of the sheet. */
+.desk-surface {
+  margin-inline: auto;
 }

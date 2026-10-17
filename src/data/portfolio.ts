@@ -19,6 +19,21 @@ export const profile = {
   ],
 };
 
+// The chat assistant (the pixel dog). Answers come from Google Gemini, using
+// only the non-placeholder facts in this file.
+export const assistant = {
+  name: "Alas",
+  subtitle: "Jasmine's hard-hat pup · answers about her work",
+  greeting:
+    "Hi! I'm Alas, Jasmine's hard-hat pup. Ask me about her skills, where she's trained and worked, or how to reach her.",
+  suggestions: [
+    "What are Jasmine's skills?",
+    "Where has she interned?",
+    "What certifications does she have?",
+    "How do I contact her?",
+  ],
+};
+
 // About section, written as numbered "general notes".
 export const notes = [
   "[Who Jasmine is: her discipline, how long she has been in the field, and where she is based.]",
